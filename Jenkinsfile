@@ -1,13 +1,10 @@
 node{
-
-   stage('SCM Checkout')
+stage('SCM Checkout')
 {
-     
 git 'https://github.com/damodaranj/my-app.git'
   }
    stage('maven-buildstage'){
-
-      def mvnHome =  tool name: 'maven3', type: 'maven'   
+def mvnHome =  tool name: 'maven3', type: 'maven'   
       sh "${mvnHome}/bin/mvn clean package"
 	  sh 'mv target/myweb*.war target/newapp.war'
    }
@@ -26,8 +23,7 @@ git 'https://github.com/damodaranj/my-app.git'
     }
    sh 'docker push praveenadocker123/myweb:0.0.2'
    }
-
-   stage('Nexus Image Push'){
+stage('Nexus Image Push'){
    sh "docker login -u admin -p admin123 3.8.167.163:8083"
    sh "docker tag praveenadocker123/myweb:0.0.2 3.8.167.163:8083/damo:1.0.0"
    sh 'docker push 3.8.167.163:8083/damo:1.0.0'

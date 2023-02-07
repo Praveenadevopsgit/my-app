@@ -38,4 +38,4 @@ stage('Nexus Image Push'){
    sh 'docker run -d -p 8090:8080 --name tomcattest praveenadocker123/myweb:0.0.2' 
    }
 }
-}
+
